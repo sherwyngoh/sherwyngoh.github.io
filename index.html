@@ -1,404 +1,1771 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Northbeam — Software & Product Consultancy</title>
-<meta name="description" content="Northbeam is a software consultancy that designs, builds, and ships reliable web apps, AI products, and cloud platforms." />
-<meta name="theme-color" content="#0b0d12" />
-<link rel="icon" type="image/png" href="assets/icon/favicon.png" />
-<link rel="manifest" href="manifest.json" />
-<meta property="og:title" content="Northbeam — Software & Product Consultancy" />
-<meta property="og:description" content="We design, build, and ship software that works." />
-<meta property="og:type" content="website" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --ink: #14171f;
-    --ink-soft: #54607a;
-    --paper: #f7f6f3;
-    --paper-2: #ffffff;
-    --line: #e4e1da;
-    --accent: #2348ff;
-    --accent-ink: #1736d6;
-    --radius: 16px;
-    --maxw: 1120px;
-    --ease: cubic-bezier(.22,.61,.36,1);
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    color: var(--ink);
-    background: var(--paper);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-  a { color: inherit; text-decoration: none; }
-  img { max-width: 100%; display: block; }
-  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
-  .serif { font-family: "Fraunces", Georgia, serif; font-weight: 600; letter-spacing: -.01em; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>Clarify — AI Voice Enhancement for Mac</title>
+  <meta name="description" content="Remove background noise in real-time with AI. Crystal-clear audio for Zoom, Teams, Discord, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Departure Mono';
+      src: url('https://cdn.jsdelivr.net/gh/nicknick-io/departure-mono@main/fonts/DepartureMono-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
 
-  /* ---------- Nav ---------- */
-  header.nav {
-    position: sticky; top: 0; z-index: 50;
-    backdrop-filter: saturate(140%) blur(10px);
-    background: rgba(247,246,243,.78);
-    border-bottom: 1px solid transparent;
-    transition: border-color .3s var(--ease), background .3s var(--ease);
-  }
-  header.nav.scrolled { border-color: var(--line); }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; letter-spacing: -.02em; }
-  .brand .mark {
-    width: 22px; height: 22px; border-radius: 6px;
-    background: linear-gradient(135deg, var(--accent), #6f86ff);
-    box-shadow: 0 4px 14px rgba(35,72,255,.35);
-  }
-  .nav-links { display: flex; align-items: center; gap: 30px; }
-  .nav-links a { color: var(--ink-soft); font-size: 15px; font-weight: 500; transition: color .2s var(--ease); }
-  .nav-links a:hover { color: var(--ink); }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-weight: 600; font-size: 15px; padding: 11px 20px; border-radius: 999px;
-    transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease);
-    cursor: pointer; border: 1px solid transparent;
-  }
-  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 8px 22px rgba(35,72,255,.28); }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(35,72,255,.36); background: var(--accent-ink); }
-  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
-  .btn-ghost:hover { border-color: var(--ink); transform: translateY(-2px); }
-  .nav-cta { display: inline-flex; }
-  .nav-toggle { display: none; background: none; border: 0; cursor: pointer; padding: 8px; }
-  .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: .3s var(--ease); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  /* ---------- Hero ---------- */
-  .hero { padding: 96px 0 80px; }
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
-    color: var(--accent-ink); background: rgba(35,72,255,.08);
-    padding: 6px 13px; border-radius: 999px; margin-bottom: 26px;
-  }
-  .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
-  .hero h1 {
-    font-family: "Fraunces", Georgia, serif; font-weight: 600;
-    font-size: clamp(40px, 6.4vw, 76px); line-height: 1.03; letter-spacing: -.025em;
-    margin: 0 0 24px; max-width: 14ch;
-  }
-  .hero h1 em { font-style: italic; color: var(--accent); }
-  .hero p.lead { font-size: clamp(18px, 2.2vw, 22px); color: var(--ink-soft); max-width: 56ch; margin: 0 0 36px; }
-  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
-  .hero-meta { margin-top: 64px; display: flex; gap: 48px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 32px; }
-  .hero-meta .stat .n { font-family: "Fraunces", serif; font-size: 38px; font-weight: 600; letter-spacing: -.02em; }
-  .hero-meta .stat .l { font-size: 14px; color: var(--ink-soft); }
+    :root {
+      --bg-void: #EDE6DE;
+      --bg-surface: #E3DBD2;
+      --bg-elevated: #DDD5CC;
+      --cyan-400: #BF98A2;
+      --cyan-500: #AF8A92;
+      --cyan-600: #9F7882;
+      --amber-400: #BE9E7A;
+      --amber-500: #B08E6A;
+      --text-primary: #3D2828;
+      --text-secondary: #8A7E76;
+      --text-muted: #B8AEA6;
+      --border: rgba(61, 40, 40, 0.08);
+      --glow-cyan: rgba(175, 138, 146, 0.25);
+      --glow-amber: rgba(190, 158, 122, 0.25);
+    }
 
-  /* ---------- Section scaffolding ---------- */
-  section { padding: 84px 0; }
-  .sec-head { max-width: 60ch; margin-bottom: 48px; }
-  .sec-tag { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 14px; }
-  .sec-head h2 { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(30px, 4vw, 46px); line-height: 1.08; letter-spacing: -.02em; margin: 0 0 14px; }
-  .sec-head p { font-size: 18px; color: var(--ink-soft); margin: 0; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  /* ---------- Services ---------- */
-  .services { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .grid { display: grid; gap: 20px; grid-template-columns: repeat(2, 1fr); }
-  .card {
-    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 32px; transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
-  }
-  .card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(20,23,31,.08); border-color: #d4d0c7; }
-  .card .ic {
-    width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
-    background: rgba(35,72,255,.09); color: var(--accent); margin-bottom: 20px;
-  }
-  .card .ic svg { width: 24px; height: 24px; }
-  .card h3 { font-size: 20px; font-weight: 600; margin: 0 0 8px; letter-spacing: -.01em; }
-  .card p { color: var(--ink-soft); margin: 0; font-size: 15.5px; }
+    body {
+      font-family: 'Instrument Sans', -apple-system, sans-serif;
+      background: var(--bg-void);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-  /* ---------- Process ---------- */
-  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-  .step { border-top: 2px solid var(--ink); padding-top: 20px; }
-  .step .num { font-family: "Fraunces", serif; font-size: 15px; color: var(--accent-ink); font-weight: 600; margin-bottom: 10px; }
-  .step h4 { font-size: 18px; margin: 0 0 8px; font-weight: 600; }
-  .step p { font-size: 15px; color: var(--ink-soft); margin: 0; }
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.02;
+      pointer-events: none;
+      z-index: 9999;
+    }
 
-  /* ---------- Work ---------- */
-  .work { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .tile {
-    border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper);
-    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
-  }
-  .tile:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(20,23,31,.08); }
-  .tile .thumb { height: 168px; position: relative; overflow: hidden; }
-  .tile .thumb::after { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 80% at 20% 0%, rgba(255,255,255,.35), transparent 60%); }
-  .t1 { background: linear-gradient(135deg, #2348ff, #7b3cff); }
-  .t2 { background: linear-gradient(135deg, #0f9e7a, #34d1a8); }
-  .t3 { background: linear-gradient(135deg, #ff6a3d, #ffb03d); }
-  .tile .body { padding: 24px; }
-  .tile .kicker { font-size: 12.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
-  .tile h4 { font-size: 19px; margin: 8px 0 8px; font-weight: 600; letter-spacing: -.01em; }
-  .tile p { font-size: 15px; color: var(--ink-soft); margin: 0 0 16px; }
-  .tile .tags { display: flex; gap: 8px; flex-wrap: wrap; }
-  .tag { font-size: 12.5px; color: var(--ink-soft); border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; }
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+      background: rgba(237, 230, 222, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+    }
 
-  /* ---------- About ---------- */
-  .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
-  .about p { font-size: 18px; color: var(--ink-soft); }
-  .about p strong { color: var(--ink); font-weight: 600; }
-  .principles { display: grid; gap: 14px; }
-  .principle { display: flex; gap: 14px; align-items: flex-start; }
-  .principle .chk { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 13px; margin-top: 3px; }
-  .principle div b { display: block; font-weight: 600; }
-  .principle div span { font-size: 14.5px; color: var(--ink-soft); }
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-  /* ---------- Contact ---------- */
-  .contact { text-align: center; }
-  .contact-card {
-    background: var(--ink); color: #fff; border-radius: 24px; padding: 72px 32px;
-    position: relative; overflow: hidden;
-  }
-  .contact-card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(80% 120% at 50% -20%, rgba(35,72,255,.45), transparent 60%); }
-  .contact-card > * { position: relative; }
-  .contact-card h2 { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(30px, 4.4vw, 52px); letter-spacing: -.02em; margin: 0 0 16px; }
-  .contact-card p { color: #b9c0d4; font-size: 18px; max-width: 50ch; margin: 0 auto 32px; }
-  .contact-card .btn-primary { background: #fff; color: var(--ink); box-shadow: 0 10px 30px rgba(0,0,0,.3); }
-  .contact-card .btn-primary:hover { background: #f0f0f0; }
+    .logo {
+      font-family: 'Departure Mono', 'Space Mono', monospace;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: 0.02em;
+    }
 
-  /* ---------- Footer ---------- */
-  footer.site { padding: 48px 0; }
-  .foot-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; color: var(--ink-soft); font-size: 14.5px; }
-  .foot-inner .brand { color: var(--ink); }
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--cyan-500), var(--cyan-400));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 24px var(--glow-cyan);
+      position: relative;
+    }
 
-  /* ---------- Reveal ---------- */
-  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
-  .reveal.in { opacity: 1; transform: none; }
+    .logo-mark::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--cyan-400), transparent);
+      opacity: 0.3;
+      z-index: -1;
+    }
 
-  /* ---------- Responsive ---------- */
-  @media (max-width: 860px) {
-    .nav-links { position: fixed; inset: 68px 0 auto 0; flex-direction: column; align-items: flex-start;
-      gap: 4px; background: var(--paper-2); border-bottom: 1px solid var(--line); padding: 16px 24px 24px;
-      transform: translateY(-130%); transition: transform .35s var(--ease); }
-    .nav-links.open { transform: translateY(0); }
-    .nav-links a { padding: 12px 0; font-size: 17px; width: 100%; }
-    .nav-links .nav-cta { margin-top: 8px; }
-    .nav-toggle { display: block; }
-    .about-grid { grid-template-columns: 1fr; gap: 36px; }
-    .work-grid { grid-template-columns: 1fr; }
-    .steps { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 560px) {
-    .grid { grid-template-columns: 1fr; }
-    .steps { grid-template-columns: 1fr; }
-    .hero-meta { gap: 32px; }
-    section { padding: 64px 0; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
-    html { scroll-behavior: auto; }
-  }
-</style>
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.625rem;
+      padding: 0.875rem 1.75rem;
+      border-radius: 10px;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cyan-500), var(--cyan-400));
+      color: #F5EEE8;
+      box-shadow: 0 4px 20px var(--glow-cyan);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px var(--glow-cyan), 0 0 0 1px var(--cyan-400);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-large {
+      padding: 1.125rem 2.25rem;
+      font-size: 1rem;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      color: var(--text-primary);
+      border-color: rgba(61, 40, 40, 0.15);
+      background: rgba(61, 40, 40, 0.03);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ambient background effects */
+    .hero-ambient {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .ambient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.4;
+      animation: drift 20s ease-in-out infinite;
+    }
+
+    .ambient-orb-1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--cyan-500) 0%, transparent 70%);
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.12;
+    }
+
+    .ambient-orb-2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--amber-500) 0%, transparent 70%);
+      bottom: 10%;
+      right: -100px;
+      opacity: 0.08;
+      animation-delay: -10s;
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -20px) scale(1.05); }
+    }
+
+    .hero-content {
+      max-width: 900px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Sound visualization badge */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--cyan-400);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+      box-shadow: 0 0 8px var(--cyan-400);
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-family: 'Departure Mono', 'Space Mono', monospace;
+      font-size: clamp(2.75rem, 7vw, 5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, var(--cyan-400) 0%, var(--text-primary) 50%, var(--amber-400) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto 3rem;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    /* Waveform visualizer */
+    .waveform-container {
+      position: relative;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+      overflow: hidden;
+    }
+
+    .waveform-container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(175, 138, 146, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .waveform-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .scenario-selector {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .scenario-btn {
+      padding: 0.625rem 1rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .scenario-btn svg {
+      width: 16px;
+      height: 16px;
+      opacity: 0.7;
+    }
+
+    .scenario-btn:hover {
+      border-color: rgba(61, 40, 40, 0.12);
+      color: var(--text-secondary);
+    }
+
+    .scenario-btn.active {
+      background: var(--bg-elevated);
+      border-color: var(--cyan-500);
+      color: var(--cyan-400);
+    }
+
+    .scenario-btn.active svg {
+      opacity: 1;
+    }
+
+    .mode-toggle {
+      display: flex;
+      background: var(--bg-void);
+      border-radius: 8px;
+      padding: 4px;
+    }
+
+    .mode-toggle label {
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .mode-toggle input {
+      display: none;
+    }
+
+    .mode-toggle input:checked + label {
+      background: var(--cyan-500);
+      color: #F5EEE8;
+    }
+
+    .demo-stat {
+      margin-top: 1.25rem;
+      text-align: center;
+    }
+
+    .demo-stat-value {
+      font-family: 'Departure Mono', 'Space Mono', monospace;
+      font-size: 1.875rem;
+      font-weight: 400;
+      color: var(--cyan-500);
+    }
+
+    .demo-stat-label {
+      display: block;
+      margin-top: 0.25rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+
+    .demo-hint {
+      margin-top: 0.75rem;
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Canvas waveform */
+    .waveform-display {
+      position: relative;
+      height: 120px;
+      margin-bottom: 1.5rem;
+      border-radius: 12px;
+      background: var(--bg-void);
+      overflow: hidden;
+    }
+
+    .waveform-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .waveform-center-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(61, 40, 40, 0.08);
+    }
+
+    /* Audio controls */
+    .audio-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .play-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan-500), var(--cyan-400));
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px var(--glow-cyan);
+      flex-shrink: 0;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 28px var(--glow-cyan);
+    }
+
+    .play-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: #F5EEE8;
+      margin-left: 2px;
+    }
+
+    .play-btn.playing svg {
+      margin-left: 0;
+    }
+
+    .progress-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: var(--bg-elevated);
+      border-radius: 3px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--cyan-500), var(--cyan-400));
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    .progress-times {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+    }
+
+    /* Hero CTA */
+    .hero-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+
+    .hero-cta-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+
+    .hero-meta svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0.6;
+    }
+
+    /* Features */
+    .features {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--cyan-400);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Departure Mono', 'Space Mono', monospace;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan-500), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(61, 40, 40, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--bg-elevated);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      color: var(--cyan-400);
+    }
+
+    .feature-card h3 {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+
+    /* Both-sides (Clarify Speaker) Section */
+    .duplex {
+      padding: 6rem 2rem;
+      background: var(--bg-surface);
+      position: relative;
+    }
+
+    .duplex::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .duplex-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .duplex-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .duplex-card {
+      background: var(--bg-void);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.25rem;
+    }
+
+    .duplex-card .duplex-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--cyan-400);
+      margin-bottom: 1rem;
+    }
+
+    .duplex-card h3 {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .duplex-card p {
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+
+    .duplex-note {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin-top: 2rem;
+    }
+
+    /* Comparison Section */
+    .comparison {
+      padding: 6rem 2rem;
+      background: var(--bg-surface);
+      position: relative;
+    }
+
+    .comparison::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .comparison-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .comparison-visual {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .comparison-side {
+      background: var(--bg-void);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .comparison-side.before {
+      border-color: rgba(196, 112, 106, 0.3);
+    }
+
+    .comparison-side.after {
+      border-color: rgba(175, 138, 146, 0.3);
+    }
+
+    .comparison-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+    }
+
+    .comparison-side.before .comparison-label {
+      color: #C4706A;
+    }
+
+    .comparison-side.after .comparison-label {
+      color: var(--cyan-400);
+    }
+
+    .comparison-waveform {
+      height: 80px;
+      background: var(--bg-surface);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .comparison-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .arrow-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, #C4706A, var(--cyan-400));
+      position: relative;
+    }
+
+    .arrow-line::after {
+      content: '';
+      position: absolute;
+      right: -6px;
+      top: -4px;
+      border: 5px solid transparent;
+      border-left-color: var(--cyan-400);
+    }
+
+    .arrow-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .noise-indicators {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .noise-tag {
+      font-size: 0.6875rem;
+      padding: 0.25rem 0.625rem;
+      background: rgba(196, 112, 106, 0.1);
+      border: 1px solid rgba(196, 112, 106, 0.3);
+      border-radius: 4px;
+      color: #C4706A;
+    }
+
+    .clarity-indicator {
+      font-size: 0.8125rem;
+      color: var(--cyan-400);
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+
+    /* Pricing */
+    .pricing {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      max-width: 480px;
+      margin: 3rem auto 0;
+      background: var(--bg-surface);
+      border: 2px solid var(--cyan-500);
+      border-radius: 24px;
+      padding: 3rem;
+      position: relative;
+      box-shadow: 0 0 60px var(--glow-cyan);
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--amber-500), var(--amber-400));
+      color: #3D2828;
+      padding: 0.5rem 1.25rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-name {
+      font-family: 'Departure Mono', 'Space Mono', monospace;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .pricing-amount {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .price-old {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .price-current {
+      font-family: 'Departure Mono', 'Space Mono', monospace;
+      font-size: 3.5rem;
+      font-weight: 400;
+    }
+
+    .price-period {
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+    }
+
+    .pricing-features svg {
+      width: 18px;
+      height: 18px;
+      color: var(--cyan-400);
+      flex-shrink: 0;
+    }
+
+    .pricing-card .btn {
+      width: 100%;
+    }
+
+    .pricing-guarantee {
+      text-align: center;
+      margin-top: 1.25rem;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 6rem 2rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq-list {
+      margin-top: 3rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      color: var(--text-primary);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      text-align: left;
+      transition: color 0.2s;
+    }
+
+    .faq-question:hover {
+      color: var(--cyan-400);
+    }
+
+    .faq-chevron {
+      flex-shrink: 0;
+      transition: transform 0.3s;
+      color: var(--text-muted);
+    }
+
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+      color: var(--cyan-400);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .faq-answer p {
+      padding-bottom: 1.5rem;
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+    }
+
+    /* Final CTA */
+    .final-cta {
+      padding: 6rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, var(--glow-cyan) 0%, transparent 70%);
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    .final-cta-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .final-cta h2 {
+      font-family: 'Departure Mono', 'Space Mono', monospace;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    .final-cta p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-copy {
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .comparison-visual {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .comparison-arrow {
+        transform: rotate(90deg);
+      }
+      .duplex-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 1rem; }
+      .nav-link { display: none; }
+      .hero { padding: 7rem 1.25rem 3rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .scenario-selector {
+        flex-wrap: wrap;
+        gap: 0.375rem;
+      }
+      .scenario-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+      }
+      .waveform-header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .pricing-card { padding: 2rem; }
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="logo">
+        <div class="logo-mark">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="22"/>
+          </svg>
+        </div>
+        CLARIFY
+      </a>
+      <div class="nav-actions">
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="https://app.clarifyaudio.com/purchase.html" class="btn btn-primary">Download</a>
+      </div>
+    </div>
+  </nav>
 
-<header class="nav" id="nav">
-  <div class="wrap nav-inner">
-    <a href="#top" class="brand"><span class="mark"></span>Northbeam</a>
-    <nav class="nav-links" id="menu">
-      <a href="#services">Services</a>
-      <a href="#process">Approach</a>
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#contact" class="btn btn-primary nav-cta">Start a project</a>
-    </nav>
-    <button class="nav-toggle" id="toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
-
-<main id="top">
-
-  <!-- Hero -->
   <section class="hero">
-    <div class="wrap">
-      <span class="eyebrow reveal"><span class="dot"></span>Software &amp; product consultancy</span>
-      <h1 class="reveal">We design, build, and <em>ship</em> software that works.</h1>
-      <p class="lead reveal">Northbeam is a small senior team that partners with founders and product teams to turn ambitious ideas into reliable web apps, AI products, and cloud platforms — without the agency overhead.</p>
-      <div class="hero-cta reveal">
-        <a href="#contact" class="btn btn-primary">Start a project →</a>
-        <a href="#work" class="btn btn-ghost">See our work</a>
-      </div>
-      <div class="hero-meta reveal">
-        <div class="stat"><div class="n">12+</div><div class="l">Years building software</div></div>
-        <div class="stat"><div class="n">40+</div><div class="l">Products shipped</div></div>
-        <div class="stat"><div class="n">100%</div><div class="l">Senior engineers</div></div>
-      </div>
+    <div class="hero-ambient">
+      <div class="ambient-orb ambient-orb-1"></div>
+      <div class="ambient-orb ambient-orb-2"></div>
     </div>
-  </section>
 
-  <!-- Services -->
-  <section class="services" id="services">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div class="sec-tag">What we do</div>
-        <h2>Four things, done properly.</h2>
-        <p>End-to-end help across the product lifecycle — strategy through to the code that runs in production.</p>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Real-time AI noise removal
       </div>
-      <div class="grid">
-        <div class="card reveal">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-          <h3>Web &amp; App Development</h3>
-          <p>Production-grade web and mobile applications built on modern, maintainable stacks — fast, accessible, and made to scale.</p>
-        </div>
-        <div class="card reveal">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
-          <h3>AI &amp; Data</h3>
-          <p>LLM-powered features, retrieval pipelines, and data products — built with the right model and grounded in real evaluation.</p>
-        </div>
-        <div class="card reveal">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
-          <h3>Cloud &amp; DevOps</h3>
-          <p>Resilient cloud architecture, infrastructure-as-code, and CI/CD pipelines that let you ship daily with confidence.</p>
-        </div>
-        <div class="card reveal">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-6M6 20v-3M18 20v-9"/><path d="M3 20h18"/></svg></div>
-          <h3>Consulting &amp; Strategy</h3>
-          <p>Architecture reviews, technical due diligence, and embedded leadership to get your team moving in the right direction.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Process -->
-  <section id="process">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div class="sec-tag">How we work</div>
-        <h2>A simple, transparent process.</h2>
-        <p>No black boxes. You see progress every week and own everything we build.</p>
-      </div>
-      <div class="steps">
-        <div class="step reveal"><div class="num">01</div><h4>Discover</h4><p>We dig into the problem, users, and constraints, then agree on what success actually looks like.</p></div>
-        <div class="step reveal"><div class="num">02</div><h4>Design</h4><p>Architecture and interface decisions made early — prototyped fast so we validate before we build.</p></div>
-        <div class="step reveal"><div class="num">03</div><h4>Build</h4><p>Tight iterations with tested code, weekly demos, and a working product in your hands throughout.</p></div>
-        <div class="step reveal"><div class="num">04</div><h4>Ship</h4><p>We launch, instrument, and hand over clean — with docs and the option to keep us on for support.</p></div>
-      </div>
-    </div>
-  </section>
+      <h1>Your voice.<br><span class="text-gradient">Crystal clear.</span></h1>
 
-  <!-- Work -->
-  <section class="work" id="work">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div class="sec-tag">Selected work</div>
-        <h2>A few things we've shipped.</h2>
-        <p>Representative engagements across fintech, health, and B2B SaaS. Details anonymized under NDA.</p>
-      </div>
-      <div class="work-grid">
-        <div class="tile reveal">
-          <div class="thumb t1"></div>
-          <div class="body">
-            <div class="kicker">Fintech · Platform</div>
-            <h4>Real-time payments dashboard</h4>
-            <p>Rebuilt a legacy reporting tool into a real-time dashboard processing millions of transactions a day.</p>
-            <div class="tags"><span class="tag">React</span><span class="tag">Go</span><span class="tag">AWS</span></div>
+      <p class="hero-subtitle">
+        Café noise, a crying baby, traffic, a clattering keyboard — gone in real time. Hear it for yourself.
+      </p>
+
+      <div class="waveform-container">
+        <div class="waveform-header">
+          <div class="scenario-selector">
+            <button class="scenario-btn active" data-noise="cafe">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/>
+              </svg>
+              Cafe
+            </button>
+            <button class="scenario-btn" data-noise="baby">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 12h.01"/><path d="M15 12h.01"/><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/>
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+              Baby
+            </button>
+            <button class="scenario-btn" data-noise="traffic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/>
+                <circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>
+              </svg>
+              Traffic
+            </button>
+            <button class="scenario-btn" data-noise="keyboard">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="M6 8h.001"/><path d="M10 8h.001"/><path d="M14 8h.001"/><path d="M18 8h.001"/>
+                <path d="M8 12h.001"/><path d="M12 12h.001"/><path d="M16 12h.001"/>
+                <path d="M7 16h10"/>
+              </svg>
+              Keyboard
+            </button>
+          </div>
+          <div class="mode-toggle">
+            <input type="radio" name="mode" id="mode-noisy" value="noisy" checked>
+            <label for="mode-noisy">Noisy</label>
+            <input type="radio" name="mode" id="mode-clean" value="clean">
+            <label for="mode-clean">Clarified</label>
           </div>
         </div>
-        <div class="tile reveal">
-          <div class="thumb t2"></div>
-          <div class="body">
-            <div class="kicker">Health · AI</div>
-            <h4>Clinical document assistant</h4>
-            <p>An LLM assistant that summarizes patient records with citation-grounded answers and full audit trails.</p>
-            <div class="tags"><span class="tag">Python</span><span class="tag">RAG</span><span class="tag">Azure</span></div>
+
+        <div class="waveform-display">
+          <canvas class="waveform-canvas" id="waveform"></canvas>
+          <div class="waveform-center-line"></div>
+        </div>
+
+        <div class="audio-controls">
+          <button class="play-btn" id="playBtn">
+            <svg viewBox="0 0 24 24" class="play-icon">
+              <polygon points="5,3 19,12 5,21"/>
+            </svg>
+            <svg viewBox="0 0 24 24" class="pause-icon" style="display: none;">
+              <rect x="6" y="4" width="4" height="16"/>
+              <rect x="14" y="4" width="4" height="16"/>
+            </svg>
+          </button>
+          <div class="progress-container">
+            <div class="progress-bar" id="progressBar">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-times">
+              <span id="currentTime">0:00</span>
+              <span id="duration">0:00</span>
+            </div>
           </div>
         </div>
-        <div class="tile reveal">
-          <div class="thumb t3"></div>
-          <div class="body">
-            <div class="kicker">SaaS · Infrastructure</div>
-            <h4>Zero-downtime cloud migration</h4>
-            <p>Moved a monolith to containerized services on Kubernetes, cutting infra cost 38% with no outage.</p>
-            <div class="tags"><span class="tag">Kubernetes</span><span class="tag">Terraform</span><span class="tag">GCP</span></div>
-          </div>
+        <audio id="audioPlayer" preload="metadata">
+          <source src="/audio/cafe-noisy.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- Measured (2026-06-07): noise-floor reduction (10th-percentile frame RMS)
+             between each *-noisy.mp3 and its *-clean.mp3. cafe 47.5 / baby 45.2 /
+             traffic 48.2 / keyboard 34.0 dB. Rounded down. Updated per scenario in JS. -->
+        <div class="demo-stat">
+          <span class="demo-stat-value" id="demoStat">−47 dB</span>
+          <span class="demo-stat-label">quieter background — this demo clip</span>
+        </div>
+
+        <p class="demo-hint">
+          Pick a noise, press play, then flip to <strong>Clarified</strong> — same recording, cleaned by Clarify on-device. Headphones make the difference obvious.
+        </p>
+      </div>
+
+      <div class="hero-cta">
+        <div class="hero-cta-buttons">
+          <a href="https://app.clarifyaudio.com/purchase.html" class="btn btn-primary btn-large">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download for Mac — $29/yr
+          </a>
+        </div>
+        <div class="hero-meta">
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            100% local processing
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18"/>
+            </svg>
+            Apple Silicon · macOS 11+
+          </span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about">
-    <div class="wrap about-grid">
-      <div class="about reveal">
-        <div class="sec-tag">Who we are</div>
-        <h2 class="serif" style="font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-.02em;margin:0 0 18px;">Senior engineers who care about the outcome, not the hours.</h2>
-        <p>Northbeam is a small consultancy of experienced engineers and product people. We deliberately stay small so every project gets people who've shipped real software — no juniors learning on your budget, no layers of account managers.</p>
-        <p><strong>We measure ourselves on what reaches production and what it does for your business.</strong> If something won't help you get there, we'll tell you.</p>
+  <section class="features">
+    <div class="section-header">
+      <div class="section-label">Why Clarify</div>
+      <h2 class="section-title">Professional audio, zero effort</h2>
+      <p class="section-subtitle">Works silently in the background with every app that uses your microphone.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <h3>Zero latency</h3>
+        <p>Real-time processing with imperceptible delay. Your voice arrives instantly, crystal clear.</p>
       </div>
-      <div class="principles reveal">
-        <div class="principle"><span class="chk">✓</span><div><b>Senior-only teams</b><span>The people you meet are the people who build it.</span></div></div>
-        <div class="principle"><span class="chk">✓</span><div><b>Fixed scope, clear price</b><span>You know what you're getting and what it costs.</span></div></div>
-        <div class="principle"><span class="chk">✓</span><div><b>You own everything</b><span>Code, infra, and documentation — handed over clean.</span></div></div>
-        <div class="principle"><span class="chk">✓</span><div><b>Built to last</b><span>Tested, documented, and easy for your team to run.</span></div></div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <h3>Works everywhere</h3>
+        <p>Zoom, Teams, Meet, Discord, OBS — any app that uses your microphone gets clean audio automatically.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Privacy first</h3>
+        <p>All AI processing happens on your device. Your audio never leaves your Mac — ever.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/>
+          </svg>
+        </div>
+        <h3>Apple Native</h3>
+        <p>Built for Apple Silicon. Runs on a fraction of your core — you won't notice it's running.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <h3>Set and forget</h3>
+        <p>One-time setup takes 30 seconds. Then it just works — no configuration needed.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </div>
+        <h3>AI-powered</h3>
+        <p>Deep learning trained on thousands of real-world noise scenarios. Removes the noise, preserves every nuance of your voice.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <line x1="23" y1="9" x2="17" y2="15"/>
+            <line x1="17" y1="9" x2="23" y2="15"/>
+          </svg>
+        </div>
+        <h3>Feedback protection</h3>
+        <p>Clarify detects audio feedback loops automatically and steps in before that piercing squeal ever reaches your call.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
+            <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+          </svg>
+        </div>
+        <h3>Live monitoring</h3>
+        <p>Hear your own enhanced voice in real time through your headphones, so you always know exactly how you sound.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/>
+            <line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/>
+            <line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>
+          </svg>
+        </div>
+        <h3>Dial it in</h3>
+        <p>Tune how aggressively Clarify removes noise with a simple dial — a light touch for quiet rooms, full strength for the coffee shop.</p>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section class="contact" id="contact">
-    <div class="wrap">
-      <div class="contact-card reveal">
-        <h2>Have something to build?</h2>
-        <p>Tell us about your project and we'll get back within one business day with honest, practical next steps.</p>
-        <a href="mailto:sherwyn@techkage.com?subject=Project%20enquiry%20for%20Northbeam" class="btn btn-primary">Email us →</a>
+  <section class="duplex">
+    <div class="duplex-inner">
+      <div class="section-header">
+        <div class="section-label">Both sides of the call</div>
+        <h2 class="section-title">Clean audio, coming and going</h2>
+        <p class="section-subtitle">Most tools only fix your microphone. Clarify cleans up the people you're listening to, too.</p>
+      </div>
+
+      <div class="duplex-grid">
+        <div class="duplex-card">
+          <div class="duplex-tag">Your voice, out</div>
+          <h3>You sound crystal clear</h3>
+          <p>Clarify removes the noise around you — cafés, traffic, keyboards, barking dogs — before it ever reaches the call. Everyone hears just your voice.</p>
+        </div>
+
+        <div class="duplex-card">
+          <div class="duplex-tag">Their voice, in &middot; new</div>
+          <h3>You hear everyone clearly</h3>
+          <p>Clarify Speaker cleans incoming call audio: it strips background noise from the people you're listening to and gently levels the volume, so the quiet talker and the loud one land at the same comfortable level — no more riding the volume knob.</p>
+        </div>
+      </div>
+
+      <p class="duplex-note">Clarify Speaker is optional and off by default. Flip it on in Settings whenever you want it.</p>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="section-header">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Less than $1 per week</h2>
+      <p class="section-subtitle">Professional audio quality for the price of a coffee per month.</p>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-badge">Launch Price</div>
+      <div class="pricing-header">
+        <div class="pricing-name">Clarify Pro</div>
+        <div class="pricing-amount">
+          <span class="price-old">$49</span>
+          <span class="price-current">$29</span>
+          <span class="price-period">/year</span>
+        </div>
+      </div>
+
+      <ul class="pricing-features">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Unlimited noise removal
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          All future updates included
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Use on up to 2 Macs
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Priority email support
+        </li>
+      </ul>
+
+      <a href="https://app.clarifyaudio.com/purchase.html" class="btn btn-primary btn-large">Get Clarify Now</a>
+      <p class="pricing-guarantee">30-day full refund, for any reason</p>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="section-header">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Questions?</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Is my audio data private?</span>
+          <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>100% private. All audio processing happens locally on your Mac using on-device AI. Your audio never leaves your device — we only verify your license online.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Which apps does it work with?</span>
+          <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Every app that uses your microphone — Zoom, Teams, Google Meet, Discord, Slack, OBS, and more. Clarify acts as a system-wide virtual microphone.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Can it clean up the people I'm listening to?</span>
+          <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Yes. Clarify Speaker is an optional mode that cleans incoming call audio — it removes background noise from the people on the other end and evens out the volume so the quiet talkers and the loud ones land at the same comfortable level. It's off by default; turn it on in Settings and point your call app's speaker output to Clarify when you want it. Like everything else, all processing stays on your Mac.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Will it slow down my Mac?</span>
+          <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>No. Clarify runs on a fraction of your core. It's built for Apple Silicon with zero internet dependency during processing.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>What are the system requirements?</span>
+          <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>An Apple Silicon Mac (M1 or later) running macOS 11 or later, and about 1 GB of disk space. A virtual audio device is configured automatically during setup.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Does it need an internet connection?</span>
+          <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>No — all audio is processed on your Mac, so Clarify works fully offline. It just checks your license online from time to time (about weekly), and keeps working offline for up to 30 days between checks. If your subscription lapses, there's a 7-day grace period before processing stops.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Can I use it on multiple Macs?</span>
+          <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Yes — your license works on up to 2 Macs simultaneously. Just enter your license key on each machine.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>What if I get audio feedback or echo?</span>
+          <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Clarify has built-in feedback protection. It continuously watches for the runaway audio loops that cause that piercing squeal and steps in automatically before it reaches your call — so you can monitor your own voice through speakers or headphones with confidence.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Do you offer refunds?</span>
+          <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Yes — a full refund within 30 days, for any reason. If Clarify isn't right for you, just email us and we'll refund every cent. No questions asked.</p>
+        </div>
       </div>
     </div>
   </section>
 
-</main>
+  <section class="final-cta">
+    <div class="final-cta-content">
+      <h2>Ready for crystal clear audio?</h2>
+      <p>Stop worrying about background noise on your next call.</p>
+      <a href="https://app.clarifyaudio.com/purchase.html" class="btn btn-primary btn-large">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download for Mac — $29/yr
+      </a>
+    </div>
+  </section>
 
-<footer class="site">
-  <div class="wrap foot-inner">
-    <a href="#top" class="brand"><span class="mark"></span>Northbeam</a>
-    <div>© <span id="yr">2026</span> Northbeam. Software &amp; product consultancy.</div>
-    <a href="mailto:sherwyn@techkage.com">sherwyn@techkage.com</a>
-  </div>
-</footer>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="/terms.html">Terms</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer-copy">© 2026 Clarify. All rights reserved.</div>
+    </div>
+  </footer>
 
-<script>
-  // Sticky nav border on scroll
-  var nav = document.getElementById('nav');
-  var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 8); };
-  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+  <script>
+    // Audio player functionality
+    (function() {
+      const audio = document.getElementById('audioPlayer');
+      const playBtn = document.getElementById('playBtn');
+      const playIcon = playBtn.querySelector('.play-icon');
+      const pauseIcon = playBtn.querySelector('.pause-icon');
+      const progressBar = document.getElementById('progressBar');
+      const progressFill = document.getElementById('progressFill');
+      const currentTimeEl = document.getElementById('currentTime');
+      const durationEl = document.getElementById('duration');
+      const canvas = document.getElementById('waveform');
+      const ctx = canvas.getContext('2d');
 
-  // Mobile menu
-  var toggle = document.getElementById('toggle');
-  var menu = document.getElementById('menu');
-  toggle.addEventListener('click', function () {
-    var open = menu.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  menu.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); });
-  });
+      const scenarioBtns = document.querySelectorAll('.scenario-btn');
+      const modeNoisy = document.getElementById('mode-noisy');
+      const modeClean = document.getElementById('mode-clean');
 
-  // Scroll reveal
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(function (el, i) {
-    el.style.transitionDelay = (Math.min(i % 5, 4) * 60) + 'ms';
-    io.observe(el);
-  });
+      let currentNoise = 'cafe';
+      let isPlaying = false;
+      let animationId;
 
-  // Year
-  document.getElementById('yr').textContent = new Date().getFullYear();
-</script>
+      // Set canvas size
+      function resizeCanvas() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        canvas.width = rect.width * window.devicePixelRatio;
+        canvas.height = rect.height * window.devicePixelRatio;
+        ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      // Format time
+      function formatTime(seconds) {
+        if (isNaN(seconds)) return '0:00';
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+      }
+
+      // Draw waveform
+      function drawWaveform() {
+        const width = canvas.width / window.devicePixelRatio;
+        const height = canvas.height / window.devicePixelRatio;
+        const centerY = height / 2;
+
+        ctx.clearRect(0, 0, width, height);
+
+        // Waveform bars
+        const barCount = 80;
+        const barWidth = 3;
+        const gap = (width - barCount * barWidth) / (barCount - 1);
+        const maxHeight = height * 0.8;
+        const time = Date.now() / 1000;
+
+        for (let i = 0; i < barCount; i++) {
+          const x = i * (barWidth + gap);
+
+          // Generate wave pattern
+          let amplitude = Math.sin(i * 0.2 + time * 2) * 0.3 +
+                         Math.sin(i * 0.1 + time * 3) * 0.2 +
+                         Math.sin(i * 0.05 + time) * 0.3 + 0.2;
+
+          if (isPlaying) {
+            amplitude *= 0.6 + Math.random() * 0.4;
+          } else {
+            amplitude *= 0.15;
+          }
+
+          const barHeight = amplitude * maxHeight;
+          const gradient = ctx.createLinearGradient(0, centerY - barHeight/2, 0, centerY + barHeight/2);
+          gradient.addColorStop(0, 'rgba(175, 138, 146, 0.8)');
+          gradient.addColorStop(0.5, 'rgba(175, 138, 146, 1)');
+          gradient.addColorStop(1, 'rgba(175, 138, 146, 0.8)');
+
+          ctx.fillStyle = gradient;
+          ctx.beginPath();
+          ctx.roundRect(x, centerY - barHeight/2, barWidth, barHeight, 1.5);
+          ctx.fill();
+        }
+
+        animationId = requestAnimationFrame(drawWaveform);
+      }
+      drawWaveform();
+
+      // Play/Pause
+      playBtn.addEventListener('click', function() {
+        if (audio.paused) {
+          audio.play();
+          playIcon.style.display = 'none';
+          pauseIcon.style.display = 'block';
+          playBtn.classList.add('playing');
+          isPlaying = true;
+        } else {
+          audio.pause();
+          playIcon.style.display = 'block';
+          pauseIcon.style.display = 'none';
+          playBtn.classList.remove('playing');
+          isPlaying = false;
+        }
+      });
+
+      // Progress update
+      audio.addEventListener('timeupdate', function() {
+        const progress = (audio.currentTime / audio.duration) * 100;
+        progressFill.style.width = progress + '%';
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+      });
+
+      audio.addEventListener('loadedmetadata', function() {
+        durationEl.textContent = formatTime(audio.duration);
+      });
+
+      audio.addEventListener('ended', function() {
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+        playBtn.classList.remove('playing');
+        isPlaying = false;
+        progressFill.style.width = '0%';
+      });
+
+      // Seek
+      progressBar.addEventListener('click', function(e) {
+        const rect = progressBar.getBoundingClientRect();
+        const percent = (e.clientX - rect.left) / rect.width;
+        audio.currentTime = percent * audio.duration;
+      });
+
+      // Switch audio source
+      function switchAudio() {
+        const wasPlaying = !audio.paused;
+        const currentTime = audio.currentTime;
+        const mode = modeClean.checked ? 'clean' : 'noisy';
+
+        audio.src = `/audio/${currentNoise}-${mode}.mp3`;
+        audio.load();
+
+        audio.addEventListener('canplay', function onCanPlay() {
+          audio.currentTime = Math.min(currentTime, audio.duration || currentTime);
+          if (wasPlaying) {
+            audio.play();
+          }
+          audio.removeEventListener('canplay', onCanPlay);
+        });
+      }
+
+      // Measured noise-floor reduction per scenario (noisy vs Clarify-cleaned clip)
+      const noiseReductionDb = { cafe: 47, baby: 45, traffic: 48, keyboard: 34 };
+      const demoStat = document.getElementById('demoStat');
+      function updateStat() {
+        if (demoStat) demoStat.textContent = `−${noiseReductionDb[currentNoise]} dB`;
+      }
+      updateStat();
+
+      // Scenario selection
+      scenarioBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          scenarioBtns.forEach(function(b) { b.classList.remove('active'); });
+          this.classList.add('active');
+          currentNoise = this.dataset.noise;
+          updateStat();
+          switchAudio();
+        });
+      });
+
+      // Mode toggle
+      modeNoisy.addEventListener('change', switchAudio);
+      modeClean.addEventListener('change', switchAudio);
+
+      // FAQ
+      document.querySelectorAll('.faq-question').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          this.parentElement.classList.toggle('open');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
