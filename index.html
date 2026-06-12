@@ -301,8 +301,67 @@
       font-size: 1.25rem;
       color: var(--text-secondary);
       max-width: 560px;
-      margin: 0 auto 3rem;
+      margin: 0 auto 1.75rem;
       animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    /* Dual-direction benefit (mic in / speakers out) */
+    .hero-duplex {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 0.5rem;
+      margin: 0 auto 2.5rem;
+      animation: fadeInUp 0.8s ease-out 0.25s both;
+    }
+
+    .hero-duplex-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.625rem 1.125rem;
+      text-align: left;
+    }
+
+    .hero-duplex-item svg {
+      width: 24px;
+      height: 24px;
+      color: var(--cyan-500);
+      flex-shrink: 0;
+    }
+
+    .hero-duplex-item b {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .hero-duplex-item span {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.3;
+    }
+
+    .hero-duplex-arrow {
+      display: flex;
+      align-items: center;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .hero-duplex-arrow svg { width: 20px; height: 20px; }
+
+    @media (max-width: 520px) {
+      .hero-duplex { flex-direction: column; gap: 0; width: 100%; }
+      .hero-duplex-item { width: 100%; }
+      .hero-duplex-arrow { transform: rotate(90deg); padding: 0.25rem 0; }
     }
 
     /* Waveform visualizer */
@@ -1166,6 +1225,36 @@
         Café noise, a crying baby, traffic, a clattering keyboard — gone in real time. Hear it for yourself.
       </p>
 
+      <div class="hero-duplex">
+        <div class="hero-duplex-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="22"/>
+          </svg>
+          <div>
+            <b>Going out — your mic</b>
+            <span>Noise stripped before it reaches the call</span>
+          </div>
+        </div>
+        <div class="hero-duplex-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 8l-4 4 4 4"/><path d="M17 8l4 4-4 4"/><line x1="3" y1="12" x2="21" y2="12"/>
+          </svg>
+        </div>
+        <div class="hero-duplex-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
+            <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+          </svg>
+          <div>
+            <b>Coming in — your speakers</b>
+            <span>Incoming voices cleaned and volume-leveled</span>
+          </div>
+        </div>
+      </div>
+
       <div class="waveform-container">
         <div class="waveform-header">
           <div class="scenario-selector">
@@ -1257,7 +1346,7 @@
               <polyline points="7 10 12 15 17 10"/>
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            Download for Mac — $29/yr
+            Download for Mac — $29 once
           </a>
         </div>
         <div class="hero-meta">
@@ -1418,8 +1507,8 @@
   <section class="pricing" id="pricing">
     <div class="section-header">
       <div class="section-label">Pricing</div>
-      <h2 class="section-title">Less than $1 per week</h2>
-      <p class="section-subtitle">Professional audio quality for the price of a coffee per month.</p>
+      <h2 class="section-title">Pay once. Yours for good.</h2>
+      <p class="section-subtitle">A single one-time purchase — no subscription, no recurring fees, ever.</p>
     </div>
 
     <div class="pricing-card">
@@ -1429,7 +1518,7 @@
         <div class="pricing-amount">
           <span class="price-old">$49</span>
           <span class="price-current">$29</span>
-          <span class="price-period">/year</span>
+          <span class="price-period">one-time</span>
         </div>
       </div>
 
@@ -1472,6 +1561,16 @@
     </div>
 
     <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Is Clarify a subscription?</span>
+          <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>No. Clarify is a one-time purchase — pay once and it's yours, with all future updates included. Because everything runs on your Mac, there's nothing to renew and no recurring fees.</p>
+        </div>
+      </div>
+
       <div class="faq-item">
         <button class="faq-question">
           <span>Is my audio data private?</span>
@@ -1528,7 +1627,7 @@
           <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-answer">
-          <p>No — all audio is processed on your Mac, so Clarify works fully offline. It just checks your license online from time to time (about weekly), and keeps working offline for up to 30 days between checks. If your subscription lapses, there's a 7-day grace period before processing stops.</p>
+          <p>No — all audio is processed on your Mac, so Clarify works fully offline. Your license is verified once when you activate it; after that there's nothing to renew and no recurring checks — it just keeps working.</p>
         </div>
       </div>
 
